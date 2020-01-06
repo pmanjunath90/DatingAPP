@@ -28,7 +28,6 @@ export class RegisterComponent implements OnInit {
   }
 
   cancel() {
-    console.log('reg cancel clicked');
     this.cancelRegister.emit(false); // In this boolean value is emited to parent component
   }
 }

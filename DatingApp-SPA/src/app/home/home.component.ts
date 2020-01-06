@@ -19,7 +19,6 @@ registermode = false;
   }
 
   cancelRegisterMode(registerMode: boolean) {
-    console.log('home cancelRegisterMode called');
     this.registermode = registerMode;
   }
 }
