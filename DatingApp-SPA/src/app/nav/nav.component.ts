@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
+import { AlertifyService } from '../_services/alertify.service';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +10,7 @@ import { AuthService } from '../_services/auth.service';
 })
 export class NavComponent implements OnInit {
   model: any = {};
-  constructor(private authService: AuthService ) {
+  constructor(public authService: AuthService, private alertify: AlertifyService) {
 
   }
 
@@ -17,10 +19,10 @@ export class NavComponent implements OnInit {
 
   login() {
     this.authService.login(this.model).subscribe(next => {
-        console.log('logged in successfuly');
+      this.alertify.success('logged in successfuly');
       },
       error => {
-          console.log('Error in login');
+        this.alertify.error('Error in login');
         }
     );
   }
@@ -34,7 +36,7 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
-    console.log('Logged out');
+    this.alertify.message('Logged out');
   }
 
 }
